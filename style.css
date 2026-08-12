@@ -2,19 +2,19 @@
 
 /* this is where we're storing our custom variables */
 :root {
-  --colour-01: white;
-  --colour-02: black;
-  --colour-03: lightgray;
-  --colour-04: darkgray;
-  --border: border: 0.25rem double var(var(--colour-03));
+  --colour-01: rgb(159, 21, 245);
+  --colour-02: rgb(1, 0, 0);
+  --colour-03: rgb(173, 82, 218);
+  --colour-04: rgb(44, 1, 129);
+  --border: 0.25rem double var(--colour-03);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --colour-01: black;
-    --colour-02: white;
-    --colour-03: darkgray;
-    --colour-04: lightgray;
+    --colour-01: rgb(1, 0, 0);
+    --colour-02: rgb(159, 21, 245);
+    --colour-03: rgb(44, 1, 129);
+    --colour-04: rgb(173, 82, 218);
   }
 }
 
@@ -37,5 +37,5 @@ dialog[open] {
 }
 
 button {
-  border: 0.25rem double var(--colour-02);
+  border: var(--border);
 }
