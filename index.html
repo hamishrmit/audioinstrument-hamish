@@ -10,6 +10,7 @@
 
     <script src="https://unpkg.com/tone"></script>
     <script src="main.js" defer></script>
+    <script src="spatialInput.js" defer></script>
   </head>
   <body>
     <dialog id="intro-dialog">
@@ -22,6 +23,18 @@
     <main>
       <button id="test-button">sound check</button>
       <button id="key-test" data-note="d4">key</button>
+      <section>
+        <div class="spatialInput">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 100 100"
+            class="xySVGEl"
+          >
+            <rect width="100" height="100" fill="transparent" id="xyPad" />
+            <circle r="3" fill="red" cx="3" cy="3" class="xyPosMarker" />
+          </svg>
+        </div>
+      </section>
     </main>
   </body>
 </html>
