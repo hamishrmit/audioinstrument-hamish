@@ -91,6 +91,7 @@ key.addEventListener("mouseenter", function (e) {
 
 // when i click the button i want to play audio file
 const playButton = document.getElementById("play-button");
+const randomButton = document.getElementById("random-time");
 const audioTrack = document.getElementById("audio-track");
 
 function playPauseAudio() {
@@ -100,6 +101,12 @@ function playPauseAudio() {
     audioTrack.pause();
   }
 }
+
+function randomTime() {
+  let trackLength = audioTrack.duration;
+  audioTrack.currentTime = trackLength * Math.random();
+}
+randomButton.addEventListener("click", randomTime);
 
 playButton.addEventListener("click", playPauseAudio);
 
@@ -124,3 +131,33 @@ function changeOsc(e) {
 }
 
 oscSlider.addEventListener("change", changeOsc);
+
+// spatial control section
+const flowerPainting = document.getElementById("flower-painting");
+
+flowerPainting.addEventListener("mouseenter", startNote);
+flowerPainting.addEventListener("mouseleave", endNote);
+
+function pitchBend(e) {
+  console.log(e.layerX);
+  synth.set({
+    detune: e.layerX,
+  });
+}
+
+flowerPainting.addEventListener("mousemove", pitchBend);
+
+let currentInstant = Temporal.Now.instant();
+console.log(currentInstant);
+//find our local time zone
+let timeZone = Temporal.Now.timeZoneId();
+// convert to local time
+let currentTime = currentInstant.toZonedDateTimeISO(timeZone);
+console.log(currentTime);
+// convert to plain time
+let plainTime = Temporal.PlainTime.from(currentTime);
+console.log(plainTime.minute);
+
+if (plainTime.minute > 54) {
+  audioTrack.playbackRate = 0.5;
+}

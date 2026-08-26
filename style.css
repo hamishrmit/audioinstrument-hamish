@@ -63,3 +63,8 @@ button {
 #xyPad {
   cursor: crosshair;
 }
+
+img {
+  margin: 1rem;
+  position: relative;
+}
