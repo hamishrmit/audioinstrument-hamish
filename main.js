@@ -147,17 +147,19 @@ function pitchBend(e) {
 
 flowerPainting.addEventListener("mousemove", pitchBend);
 
-let currentInstant = Temporal.Now.instant();
-console.log(currentInstant);
-//find our local time zone
-let timeZone = Temporal.Now.timeZoneId();
-// convert to local time
-let currentTime = currentInstant.toZonedDateTimeISO(timeZone);
-console.log(currentTime);
-// convert to plain time
-let plainTime = Temporal.PlainTime.from(currentTime);
-console.log(plainTime.minute);
+/////// TEMPORAL
 
-if (plainTime.minute > 54) {
-  audioTrack.playbackRate = 0.5;
-}
+// let currentInstant = Temporal.Now.instant();
+// console.log(currentInstant);
+// //find our local time zone
+// let timeZone = Temporal.Now.timeZoneId();
+// // convert to local time
+// let currentTime = currentInstant.toZonedDateTimeISO(timeZone);
+// console.log(currentTime);
+// // convert to plain time
+// let plainTime = Temporal.PlainTime.from(currentTime);
+// console.log(plainTime.minute);
+
+// if (plainTime.minute > 54) {
+//   audioTrack.playbackRate = 0.5;
+// }
