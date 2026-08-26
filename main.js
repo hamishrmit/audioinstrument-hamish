@@ -101,4 +101,26 @@ function playPauseAudio() {
   }
 }
 
-playButton.addEventListener("click", playAudio);
+playButton.addEventListener("click", playPauseAudio);
+
+// set slider to change oscillator
+const oscSlider = document.getElementById("osc-range");
+
+function changeOsc(e) {
+  console.log(e.target.value);
+  if (e.target.value > 50) {
+    synth.set({
+      oscillator: {
+        type: "square",
+      },
+    });
+  } else {
+    synth.set({
+      oscillator: {
+        type: "sine",
+      },
+    });
+  }
+}
+
+oscSlider.addEventListener("change", changeOsc);
