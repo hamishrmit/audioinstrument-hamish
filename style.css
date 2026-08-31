@@ -68,3 +68,25 @@ img {
   margin: 1rem;
   position: relative;
 }
+
+.keyboard {
+  display: flex;
+  width: 500px;
+  height: 200px;
+}
+
+.key {
+  flex: 1;
+  height: 100%;
+  background-color: white;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.key:hover {
+  background-color: lightgray;
+}
+
+.key:active {
+  background-color: red;
+}
