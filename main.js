@@ -19,6 +19,18 @@ const synth = new Tone.PolySynth();
 // find piano keys
 const pianoKeys = document.querySelectorAll(".key");
 
+// defined computer keys
+const computerKeys = {
+  a: "c4",
+  s: "d4",
+  d: "e4",
+  f: "f4",
+  g: "g4",
+  h: "a4",
+  j: "b4",
+  k: "c5",
+};
+
 // is the user currently holding down the key
 let mouseButtonHeld = false;
 // if user holds down key, set to true, then if they let it up, set to false
@@ -163,6 +175,23 @@ function pitchBend(e) {
 }
 
 flowerPainting.addEventListener("mousemove", pitchBend);
+
+// event listeners for computer keys
+document.addEventListener("keydown", function (e) {
+  const note = computerKeys[e.key.toLowerCase()];
+
+  if (note) {
+    synth.triggerAttack(note);
+  }
+});
+
+document.addEventListener("keyup", function (e) {
+  const note = computerKeys[e.key.toLowerCase()];
+
+  if (note) {
+    synth.triggerRelease(note);
+  }
+});
 
 /////// TEMPORAL
 
