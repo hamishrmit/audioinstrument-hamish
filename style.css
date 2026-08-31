@@ -70,23 +70,48 @@ img {
 }
 
 .keyboard {
+  position: relative;
   display: flex;
   width: 500px;
   height: 200px;
 }
 
-.key {
+.white-key {
   flex: 1;
   height: 100%;
   background-color: white;
   border: 1px solid black;
   cursor: pointer;
+  z-index: 1;
 }
 
-.key:hover {
-  background-color: lightgray;
+.black-key {
+  position: absolute;
+  width: 8%;
+  height: 60%;
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+  cursor: pointer;
+  z-index: 2;
 }
 
-.key:active {
-  background-color: red;
+.keyboard .black-key:nth-of-type(2) {
+  left: 9%;
+}
+
+.keyboard .black-key:nth-of-type(4) {
+  left: 21%;
+}
+
+.keyboard .black-key:nth-of-type(7) {
+  left: 47%;
+}
+
+.keyboard .black-key:nth-of-type(9) {
+  left: 60%;
+}
+
+.keyboard .black-key:nth-of-type(11) {
+  left: 73%;
 }
