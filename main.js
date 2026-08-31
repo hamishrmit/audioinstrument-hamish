@@ -95,6 +95,14 @@ pianoKeys.forEach(function (key) {
   key.addEventListener("mouseleave", endNote);
 });
 
+pianoKeys.forEach(function (key) {
+  key.addEventListener("mouseenter", function (e) {
+    if (mouseButtonHeld === true) {
+      startNote(e);
+    }
+  });
+});
+
 // key.addEventListener("click", playDataNote);
 // testButton.addEventListener("click", playDataNote);
 
