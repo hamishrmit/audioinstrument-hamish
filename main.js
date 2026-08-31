@@ -16,6 +16,9 @@ const key = document.getElementById("key-test");
 // changed this to poly synth
 const synth = new Tone.PolySynth();
 
+// find piano keys
+const pianoKeys = document.querySelectorAll(".key");
+
 // is the user currently holding down the key
 let mouseButtonHeld = false;
 // if user holds down key, set to true, then if they let it up, set to false
@@ -84,6 +87,12 @@ key.addEventListener("mouseenter", function (e) {
   if (mouseButtonHeld === true) {
     startNote(e);
   }
+});
+
+pianoKeys.forEach(function (key) {
+  key.addEventListener("mousedown", startNote);
+  key.addEventListener("mouseup", endNote);
+  key.addEventListener("mouseleave", endNote);
 });
 
 // key.addEventListener("click", playDataNote);
