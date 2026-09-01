@@ -40,14 +40,6 @@ button {
   border: var(--border);
 }
 
-#key-test {
-  cursor: pointer;
-}
-
-#key-test:active {
-  background-color: red;
-}
-
 .spatialInput {
   width: 500px;
   height: 500px;
@@ -62,11 +54,6 @@ button {
 
 #xyPad {
   cursor: crosshair;
-}
-
-img {
-  margin: 1rem;
-  position: relative;
 }
 
 .keyboard {

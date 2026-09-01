@@ -2,18 +2,10 @@
 
 //find our dialog
 const introDialog = document.getElementById("intro-dialog");
-// show the found element in our browser console
-// console.log(introDialog);
 
 const introDialogCloseButton = document.getElementById("intro-dialog-close");
 
-// find our test button
-const testButton = document.getElementById("test-button");
-// find my key button for testing
-const key = document.getElementById("key-test");
-
 // init our synth
-// changed this to poly synth
 const synth = new Tone.PolySynth();
 
 // find piano keys
@@ -31,9 +23,10 @@ const computerKeys = {
   k: "c5",
 };
 
-// is the user currently holding down the key
+// is the user holding down mouse button
 let mouseButtonHeld = false;
-// if user holds down key, set to true, then if they let it up, set to false
+
+// if user holds down mouse, set to true, then if they let it up, set to false
 window.addEventListener("mousedown", function () {
   mouseButtonHeld = true;
 });
@@ -41,7 +34,7 @@ window.addEventListener("mouseup", function () {
   mouseButtonHeld = false;
 });
 
-//// Dialog
+//// dialog
 // show dialog on page load
 introDialog.showModal();
 // close dialog when user clicks
@@ -59,24 +52,6 @@ function toneInit() {
   synth.connect(Tone.Destination);
 }
 
-// do something when this button is clicked
-// testButton.addEventListener("click", playNote);
-
-// function that runs when button is clicked
-function playNote() {
-  // play a note for a duration
-  synth.triggerAttackRelease("c4", "8n");
-}
-
-function playDataNote(e) {
-  console.log(e);
-  let buttonClicked = e.target;
-  // console.log(buttonClicked);
-  let note = buttonClicked.dataset.note;
-  // console.log(e.target);
-  synth.triggerAttackRelease(note, "8n");
-}
-
 function startNote(e) {
   // find key that was pressed
   let keyPressed = e.target;
@@ -91,16 +66,7 @@ function endNote(e) {
   synth.triggerRelease(note);
 }
 
-key.addEventListener("mousedown", startNote);
-key.addEventListener("mouseup", endNote);
-key.addEventListener("mouseleave", endNote);
-// if user is holding mouse button down when entering the key play note
-key.addEventListener("mouseenter", function (e) {
-  if (mouseButtonHeld === true) {
-    startNote(e);
-  }
-});
-
+// mouse piano interaction
 pianoKeys.forEach(function (key) {
   key.addEventListener("mousedown", startNote);
   key.addEventListener("mouseup", endNote);
@@ -115,68 +81,7 @@ pianoKeys.forEach(function (key) {
   });
 });
 
-// key.addEventListener("click", playDataNote);
-// testButton.addEventListener("click", playDataNote);
-
-// when i click the button i want to play audio file
-const playButton = document.getElementById("play-button");
-const randomButton = document.getElementById("random-time");
-const audioTrack = document.getElementById("audio-track");
-
-function playPauseAudio() {
-  if (audio.paused) {
-    audioTrack.play();
-  } else {
-    audioTrack.pause();
-  }
-}
-
-function randomTime() {
-  let trackLength = audioTrack.duration;
-  audioTrack.currentTime = trackLength * Math.random();
-}
-randomButton.addEventListener("click", randomTime);
-
-playButton.addEventListener("click", playPauseAudio);
-
-// set slider to change oscillator
-const oscSlider = document.getElementById("osc-range");
-
-function changeOsc(e) {
-  console.log(e.target.value);
-  if (e.target.value > 50) {
-    synth.set({
-      oscillator: {
-        type: "square",
-      },
-    });
-  } else {
-    synth.set({
-      oscillator: {
-        type: "sine",
-      },
-    });
-  }
-}
-
-oscSlider.addEventListener("change", changeOsc);
-
-// spatial control section
-const flowerPainting = document.getElementById("flower-painting");
-
-flowerPainting.addEventListener("mouseenter", startNote);
-flowerPainting.addEventListener("mouseleave", endNote);
-
-function pitchBend(e) {
-  console.log(e.layerX);
-  synth.set({
-    detune: e.layerX,
-  });
-}
-
-flowerPainting.addEventListener("mousemove", pitchBend);
-
-// event listeners for computer keys
+// computer keyboard interaction
 document.addEventListener("keydown", function (e) {
   const note = computerKeys[e.key.toLowerCase()];
 
@@ -198,20 +103,3 @@ document.addEventListener("keyup", function (e) {
     key.classList.remove("active");
   }
 });
-
-/////// TEMPORAL
-
-// let currentInstant = Temporal.Now.instant();
-// console.log(currentInstant);
-// //find our local time zone
-// let timeZone = Temporal.Now.timeZoneId();
-// // convert to local time
-// let currentTime = currentInstant.toZonedDateTimeISO(timeZone);
-// console.log(currentTime);
-// // convert to plain time
-// let plainTime = Temporal.PlainTime.from(currentTime);
-// console.log(plainTime.minute);
-
-// if (plainTime.minute > 54) {
-//   audioTrack.playbackRate = 0.5;
-// }
