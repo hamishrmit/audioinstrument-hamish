@@ -182,6 +182,9 @@ document.addEventListener("keydown", function (e) {
 
   if (note) {
     synth.triggerAttack(note);
+
+    const key = document.querySelector(`[data-note="${note}"]`);
+    key.classList.add("active");
   }
 });
 
@@ -190,6 +193,9 @@ document.addEventListener("keyup", function (e) {
 
   if (note) {
     synth.triggerRelease(note);
+
+    const key = document.querySelector(`[data-note="${note}"]`);
+    key.classList.remove("active");
   }
 });
 
