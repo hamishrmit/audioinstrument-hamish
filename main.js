@@ -55,15 +55,28 @@ function toneInit() {
 function startNote(e) {
   // find key that was pressed
   let keyPressed = e.target;
+
   // find the note associated with the key
   let note = keyPressed.dataset.note;
+
+  // play the note
   synth.triggerAttack(note);
+
+  // add visual feedback
+  keyPressed.classList.add("active");
 }
 
 function endNote(e) {
   let keyPressed = e.target;
+
+  // find the note associated with the key
   let note = keyPressed.dataset.note;
+
+  // stop the note
   synth.triggerRelease(note);
+
+  // remove visual feedback
+  keyPressed.classList.remove("active");
 }
 
 // mouse piano interaction
@@ -86,10 +99,8 @@ document.addEventListener("keydown", function (e) {
   const note = computerKeys[e.key.toLowerCase()];
 
   if (note) {
-    synth.triggerAttack(note);
-
     const key = document.querySelector(`[data-note="${note}"]`);
-    key.classList.add("active");
+    startNote({ target: key });
   }
 });
 
@@ -97,9 +108,7 @@ document.addEventListener("keyup", function (e) {
   const note = computerKeys[e.key.toLowerCase()];
 
   if (note) {
-    synth.triggerRelease(note);
-
     const key = document.querySelector(`[data-note="${note}"]`);
-    key.classList.remove("active");
+    endNote({ target: key });
   }
 });
