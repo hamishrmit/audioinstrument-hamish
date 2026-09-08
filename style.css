@@ -1,49 +1,67 @@
-@import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap");
 
 /* this is where we're storing our custom variables */
 :root {
-  --colour-01: rgb(159, 21, 245);
-  --colour-02: rgb(1, 0, 0);
-  --colour-03: rgb(173, 82, 218);
-  --colour-04: rgb(44, 1, 129);
-  --border: 0.25rem double var(--colour-03);
+  --colour-01: rgb(190, 235, 255);
+  --colour-02: rgb(55, 55, 75);
+  --colour-03: rgb(255, 105, 180);
+  --colour-04: rgb(95, 205, 255);
+  --border: 0.25rem solid var(--colour-02);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --colour-01: rgb(1, 0, 0);
-    --colour-02: rgb(159, 21, 245);
-    --colour-03: rgb(44, 1, 129);
-    --colour-04: rgb(173, 82, 218);
+    --colour-01: rgb(190, 235, 255);
+    --colour-02: rgb(55, 55, 75);
+    --colour-03: rgb(255, 105, 180);
+    --colour-04: rgb(95, 205, 255);
   }
 }
 
 body {
-  font-family: "Archivo", sans-serif;
+  font-family: "Fredoka", sans-serif;
   background-color: var(--colour-01);
   color: var(--colour-02);
+  margin: 0;
 }
 
 dialog[open] {
-  background-color: var(--colour-01);
+  background-color: white;
   color: var(--colour-02);
   margin: auto;
-  padding: 1rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   align-items: center;
   border: var(--border);
+  border-radius: 1.5rem;
+}
+
+#intro-dialog-close {
+  background-color: rgb(180, 140, 255);
+  color: white;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.75rem 2.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
 button {
   border: var(--border);
+  border-radius: 0.75rem;
+  font-family: inherit;
+  cursor: pointer;
 }
 
 .spatialInput {
   width: 500px;
   height: 500px;
-  border: 0.25rem solid var(--colour-02);
+  border: var(--border);
+  border-radius: 1.5rem;
+  background-color: white;
+  overflow: hidden;
 }
 
 .xySVGEl {
@@ -67,20 +85,29 @@ button {
   flex: 1;
   height: 100%;
   background-color: white;
-  border: 1px solid black;
+  border: 2px solid var(--colour-02);
   cursor: pointer;
   z-index: 1;
+  font-size: 1rem;
+}
+
+.white-key:hover {
+  background-color: rgb(235, 245, 255);
 }
 
 .black-key {
   position: absolute;
   width: 8%;
   height: 60%;
-  background-color: black;
+  background-color: var(--colour-02);
   color: white;
-  border: 1px solid black;
+  border: 2px solid var(--colour-02);
   cursor: pointer;
   z-index: 2;
+}
+
+.black-key:hover {
+  background-color: rgb(80, 80, 100);
 }
 
 .keyboard .black-key:nth-of-type(2) {
@@ -104,9 +131,9 @@ button {
 }
 
 .key.active {
-  background-color: red;
+  background-color: rgb(180, 140, 255);
 }
 
 .black-key.active {
-  background-color: darkred;
+  background-color: rgb(255, 105, 180);
 }
