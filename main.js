@@ -64,7 +64,7 @@ introDialog.addEventListener("close", toneInit);
 //// Tone
 // run to setup our audio system
 function toneInit() {
-  synth.connect(Tone.Destination);
+  Tone.start();
 }
 
 function startNote(e) {

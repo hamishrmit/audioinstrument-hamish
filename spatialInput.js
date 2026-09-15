@@ -13,6 +13,8 @@ function moveMarker(e) {
 
   marker.setAttribute("cx", x);
   marker.setAttribute("cy", y);
+
+  filter.frequency.value = 200 + (x / 100) * 4800;
 }
 
 xyPad.addEventListener("mousedown", function (e) {
