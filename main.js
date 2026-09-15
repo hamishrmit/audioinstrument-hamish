@@ -39,6 +39,7 @@ const computerKeys = {
 };
 
 const heldNotes = new Set();
+const keyboardHeld = {};
 
 // is the user holding down mouse button
 let mouseButtonHeld = false;
@@ -89,6 +90,7 @@ function endNote(e) {
 
   // stop the note
   synth.triggerRelease(note);
+  heldNotes.delete(note);
 
   // remove visual feedback
   keyPressed.classList.remove("active");
@@ -104,7 +106,7 @@ pianoKeys.forEach(function (key) {
   key.addEventListener("mouseup", function (e) {
     key.mouseHeld = false;
 
-    if (!key.keyboardHeld) {
+    if (!keyboardHeld[key.dataset.note]) {
       endNote(e);
     }
   });
@@ -113,7 +115,7 @@ pianoKeys.forEach(function (key) {
     if (key.mouseHeld) {
       key.mouseHeld = false;
 
-      if (!key.keyboardHeld) {
+      if (!keyboardHeld[key.dataset.note]) {
         endNote(e);
       }
     }
@@ -136,6 +138,7 @@ document.addEventListener("keydown", function (e) {
   if (note && !e.repeat) {
     const key = document.querySelector(`.keyboard [data-note="${note}"]`);
 
+    keyboardHeld[e.key.toLowerCase()] = true;
     key.keyboardHeld = true;
     startNote({ target: key });
   }
@@ -147,6 +150,7 @@ document.addEventListener("keyup", function (e) {
   if (note) {
     const key = document.querySelector(`.keyboard [data-note="${note}"]`);
 
+    keyboardHeld[e.key.toLowerCase()] = false;
     key.keyboardHeld = false;
 
     if (!key.mouseHeld) {
