@@ -38,6 +38,8 @@ const computerKeys = {
   k: "c5",
 };
 
+const heldNotes = new Set();
+
 // is the user holding down mouse button
 let mouseButtonHeld = false;
 
@@ -68,16 +70,14 @@ function toneInit() {
 }
 
 function startNote(e) {
-  // find key that was pressed
   let keyPressed = e.target;
-
-  // find the note associated with the key
   let note = keyPressed.dataset.note;
 
-  // play the note
-  synth.triggerAttack(note);
+  if (!heldNotes.has(note)) {
+    synth.triggerAttack(note);
+    heldNotes.add(note);
+  }
 
-  // add visual feedback
   keyPressed.classList.add("active");
 }
 
@@ -96,14 +96,34 @@ function endNote(e) {
 
 // mouse piano interaction
 pianoKeys.forEach(function (key) {
-  key.addEventListener("mousedown", startNote);
-  key.addEventListener("mouseup", endNote);
-  key.addEventListener("mouseleave", endNote);
+  key.addEventListener("mousedown", function (e) {
+    key.mouseHeld = true;
+    startNote(e);
+  });
+
+  key.addEventListener("mouseup", function (e) {
+    key.mouseHeld = false;
+
+    if (!key.keyboardHeld) {
+      endNote(e);
+    }
+  });
+
+  key.addEventListener("mouseleave", function (e) {
+    if (key.mouseHeld) {
+      key.mouseHeld = false;
+
+      if (!key.keyboardHeld) {
+        endNote(e);
+      }
+    }
+  });
 });
 
 pianoKeys.forEach(function (key) {
   key.addEventListener("mouseenter", function (e) {
     if (mouseButtonHeld === true) {
+      key.mouseHeld = true;
       startNote(e);
     }
   });
@@ -113,8 +133,10 @@ pianoKeys.forEach(function (key) {
 document.addEventListener("keydown", function (e) {
   const note = computerKeys[e.key.toLowerCase()];
 
-  if (note) {
-    const key = document.querySelector(`[data-note="${note}"]`);
+  if (note && !e.repeat) {
+    const key = document.querySelector(`.keyboard [data-note="${note}"]`);
+
+    key.keyboardHeld = true;
     startNote({ target: key });
   }
 });
@@ -123,7 +145,12 @@ document.addEventListener("keyup", function (e) {
   const note = computerKeys[e.key.toLowerCase()];
 
   if (note) {
-    const key = document.querySelector(`[data-note="${note}"]`);
-    endNote({ target: key });
+    const key = document.querySelector(`.keyboard [data-note="${note}"]`);
+
+    key.keyboardHeld = false;
+
+    if (!key.mouseHeld) {
+      endNote({ target: key });
+    }
   }
 });
