@@ -6,7 +6,22 @@ const introDialog = document.getElementById("intro-dialog");
 const introDialogCloseButton = document.getElementById("intro-dialog-close");
 
 // init our synth
-const synth = new Tone.PolySynth();
+const synth = new Tone.PolySynth({
+  oscillator: {
+    type: "sine",
+  },
+  envelope: {
+    attack: 0.1,
+    decay: 0.2,
+    sustain: 0.7,
+    release: 0.5,
+  },
+});
+
+const filter = new Tone.Filter(1000, "lowpass");
+
+synth.connect(filter);
+filter.toDestination();
 
 // find piano keys
 const pianoKeys = document.querySelectorAll(".key");
