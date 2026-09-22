@@ -38,6 +38,14 @@ const computerKeys = {
   k: "c5",
 };
 
+const blackComputerKeys = {
+  w: "c#4",
+  e: "d#4",
+  t: "f#4",
+  y: "g#4",
+  u: "a#4",
+};
+
 const heldNotes = new Set();
 const keyboardHeld = {};
 
@@ -133,24 +141,26 @@ pianoKeys.forEach(function (key) {
 
 // computer keyboard interaction
 document.addEventListener("keydown", function (e) {
-  const note = computerKeys[e.key.toLowerCase()];
+  const keyPressed = e.key.toLowerCase();
+  const note = computerKeys[keyPressed] || blackComputerKeys[keyPressed];
 
   if (note && !e.repeat) {
     const key = document.querySelector(`.keyboard [data-note="${note}"]`);
 
-    keyboardHeld[e.key.toLowerCase()] = true;
+    keyboardHeld[keyPressed] = true;
     key.keyboardHeld = true;
     startNote({ target: key });
   }
 });
 
 document.addEventListener("keyup", function (e) {
-  const note = computerKeys[e.key.toLowerCase()];
+  const keyPressed = e.key.toLowerCase();
+  const note = computerKeys[keyPressed] || blackComputerKeys[keyPressed];
 
   if (note) {
     const key = document.querySelector(`.keyboard [data-note="${note}"]`);
 
-    keyboardHeld[e.key.toLowerCase()] = false;
+    keyboardHeld[keyPressed] = false;
     key.keyboardHeld = false;
 
     if (!key.mouseHeld) {
