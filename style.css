@@ -157,3 +157,53 @@ button {
 .key:focus {
   outline: none;
 }
+
+.spatialInputSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.spatialInput {
+  width: 500px;
+  height: 500px;
+  border: var(--border);
+  border-radius: 1.5rem;
+  background-color: white;
+  position: relative;
+  overflow: visible;
+}
+
+.spatialLabel {
+  position: absolute;
+  font-size: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+  z-index: 3;
+}
+
+.spatialLabelTop {
+  top: -2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.spatialLabelBottom {
+  bottom: -2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.spatialLabelLeft {
+  left: -5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.spatialLabelRight {
+  right: -4rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
