@@ -153,3 +153,7 @@ button {
 .black-key.active {
   background-color: rgb(255, 105, 180);
 }
+
+.key:focus {
+  outline: none;
+}
