@@ -18,10 +18,15 @@ const synth = new Tone.PolySynth({
   },
 });
 
-const filter = new Tone.Filter(1000, "lowpass");
+const filter = new Tone.Filter(5000, "lowpass");
+
+// echo effect, starts with no echo
+const echo = new Tone.FeedbackDelay("8n", 0.5);
+echo.wet.value = 0;
 
 synth.connect(filter);
-filter.toDestination();
+filter.connect(echo);
+echo.toDestination();
 
 // find piano keys
 const pianoKeys = document.querySelectorAll(".key");
