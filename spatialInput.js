@@ -14,7 +14,7 @@ function moveMarker(e) {
   marker.setAttribute("cy", y);
 
   // X axis controls filter frequency
-  filter.frequency.value = 200 + (x / 100) * 4800;
+  filter.frequency.value = 200 * Math.pow(25, x / 100);
 
   // Y axis controls envelope attack
   synth.set({

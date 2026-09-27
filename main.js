@@ -114,7 +114,7 @@ pianoKeys.forEach(function (key) {
   key.addEventListener("mouseup", function (e) {
     key.mouseHeld = false;
 
-    if (!keyboardHeld[key.dataset.note]) {
+    if (!key.keyboardHeld) {
       endNote(e);
     }
   });
@@ -123,7 +123,7 @@ pianoKeys.forEach(function (key) {
     if (key.mouseHeld) {
       key.mouseHeld = false;
 
-      if (!keyboardHeld[key.dataset.note]) {
+      if (!key.keyboardHeld) {
         endNote(e);
       }
     }

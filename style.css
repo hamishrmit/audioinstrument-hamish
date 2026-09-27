@@ -71,15 +71,6 @@ button {
   cursor: pointer;
 }
 
-.spatialInput {
-  width: 500px;
-  height: 500px;
-  border: var(--border);
-  border-radius: 1.5rem;
-  background-color: white;
-  overflow: hidden;
-}
-
 .xySVGEl {
   width: 100%;
   height: 100%;
