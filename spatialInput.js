@@ -13,8 +13,10 @@ function moveMarker(e) {
   marker.setAttribute("cx", x);
   marker.setAttribute("cy", y);
 
-  // X axis controls filter frequency
-  filter.frequency.value = 200 * Math.pow(25, x / 100);
+  // X axis controls pitch, one octave down (left) to one octave up (right)
+  synth.set({
+    detune: (x / 100) * 2400 - 1200,
+  });
 
   // Y axis controls envelope attack
   synth.set({
