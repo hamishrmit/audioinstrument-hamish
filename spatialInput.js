@@ -18,12 +18,8 @@ function moveMarker(e) {
     detune: (x / 100) * 2400 - 1200,
   });
 
-  // Y axis controls envelope attack
-  synth.set({
-    envelope: {
-      attack: 0.01 + (y / 100) * 0.99,
-    },
-  });
+  // Y axis controls echo amount, none at the top to lots at the bottom
+  echo.wet.value = (y / 100) * 0.6;
 }
 
 xyPad.addEventListener("mousedown", function (e) {
