@@ -2,8 +2,22 @@
 
 const xyPad = document.getElementById("xyPad");
 const marker = document.querySelector(".xyPosMarker");
+const feedbackShape = document.querySelector(".feedbackShape");
 
 let dragging = false;
+
+// change the shape to match the marker position
+// left is small (muffled), right is big (bright) top is square (short attack), bottom is round (long attack)
+function updateShape(x, y) {
+  const size = 30 + (x / 100) * 60;
+  const roundness = (y / 100) * (size / 2);
+
+  feedbackShape.setAttribute("x", 50 - size / 2);
+  feedbackShape.setAttribute("y", 50 - size / 2);
+  feedbackShape.setAttribute("width", size);
+  feedbackShape.setAttribute("height", size);
+  feedbackShape.setAttribute("rx", roundness);
+}
 
 function moveMarker(e) {
   const rect = xyPad.getBoundingClientRect();
@@ -12,6 +26,7 @@ function moveMarker(e) {
 
   marker.setAttribute("cx", x);
   marker.setAttribute("cy", y);
+  updateShape(x, y);
 
   // X axis controls filter frequency
   filter.frequency.value = 200 * Math.pow(25, x / 100);
@@ -38,3 +53,6 @@ xyPad.addEventListener("mousemove", function (e) {
     moveMarker(e);
   }
 });
+
+// set the starting shape for the marker's position in the centre
+updateShape(50, 50);
