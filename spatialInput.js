@@ -5,6 +5,13 @@ const marker = document.querySelector(".xyPosMarker");
 
 let dragging = false;
 
+// this changes the marker to match its position
+// left is cool blue (muffled), right is warm yellow (bright)
+function updateMarker(x, y) {
+  const hue = 220 - (x / 100) * 175;
+  marker.setAttribute("fill", `hsl(${hue}, 90%, 55%)`);
+}
+
 function moveMarker(e) {
   const rect = xyPad.getBoundingClientRect();
   const x = ((e.clientX - rect.left) / rect.width) * 100;
@@ -12,6 +19,7 @@ function moveMarker(e) {
 
   marker.setAttribute("cx", x);
   marker.setAttribute("cy", y);
+  updateMarker(x, y);
 
   // X axis controls filter frequency
   filter.frequency.value = 200 * Math.pow(25, x / 100);
@@ -38,3 +46,6 @@ xyPad.addEventListener("mousemove", function (e) {
     moveMarker(e);
   }
 });
+
+// set the markers starting look for its position in the centre
+updateMarker(50, 50);
