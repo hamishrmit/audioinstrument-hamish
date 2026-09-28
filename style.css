@@ -175,26 +175,22 @@ button {
   z-index: 3;
 }
 
-.spatialLabelTop {
+.spatialLabelTopLeft {
   top: -2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
 }
 
-.spatialLabelBottom {
+.spatialLabelTopRight {
+  top: -2.5rem;
+  right: 0;
+}
+
+.spatialLabelBottomLeft {
   bottom: -2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
 }
 
-.spatialLabelLeft {
-  left: -5rem;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.spatialLabelRight {
-  right: -4rem;
-  top: 50%;
-  transform: translateY(-50%);
+.spatialLabelBottomRight {
+  bottom: -2.5rem;
+  right: 0;
 }
