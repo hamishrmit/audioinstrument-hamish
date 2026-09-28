@@ -198,3 +198,9 @@ button {
   top: 50%;
   transform: translateY(-50%);
 }
+
+.xyPosMarker {
+  fill: var(--colour-02);
+  stroke: white;
+  stroke-width: 1;
+}
