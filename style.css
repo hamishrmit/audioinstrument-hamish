@@ -151,7 +151,8 @@ button {
 
 .spatialInputSection {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 7rem;
   align-items: center;
   margin-top: 3rem;
   margin-bottom: 3rem;
