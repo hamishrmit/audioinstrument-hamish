@@ -1,0 +1,66 @@
+hamishrmit,Tue Sep 29 00:02:12 2026 +1000,change marker size from vertical position,made the marker grow from small at the top to big at the bottom to display short attack/long attack
+
+hamishrmit,Mon Sep 28 23:52:03 2026 +1000,marker colour changes based on horizontal positon,marker now changes from cool blue on the left to warm yellow on the right to match sound once again
+
+hamishrmit,Mon Sep 28 01:53:02 2026 +1000,checked for any bugs I'd looked over,used AI to scan over my code and check for any bugs I'd looked over before I create all my prototypes. Made the filter change evenly across the pad, fixed notes cutting out when using mouse and keyboard together, and removed duplicate CSS. Also changed 'long attack' and 'short attack' to just 'long' and 'short' due to suggestion from Patrick
+
+hamishrmit,Wed Sep 23 01:41:52 2026 +1000,added y-axis attack control + labels,I made the y-axis of the spatial input control the synth envelope attack, and also added labels to each side of the spatial input to explain the sound changes
+
+hamishrmit,Tue Sep 22 22:27:55 2026 +1000,added computer controls for black keys,made the black keys able to be played by the computer keys W, E, T, Y, and U so that all keys are consistent
+
+hamishrmit,Tue Sep 22 22:08:30 2026 +1000,removed focus outline,there was an unnecessary focus outline after a key was clicked so I changed the outline to none
+
+hamishrmit,Wed Sep 16 02:27:23 2026 +1000,(forgot to fully save previous commit),
+hamishrmit,Wed Sep 16 02:25:35 2026 +1000,fixed keyboard and mouse conflict,there was a glitch where if a key was played using the computer key and mouse at the same time it would stay playing infinitely. fixed this by tracking mouse and keyboard states separately so notes stop correctly when both inputs are used
+
+hamishrmit,Wed Sep 16 01:28:40 2026 +1000,X-value of spatial input controls frequency,made the filter frequency be controlled by the X-value of the red dot in the spatial input. more to the left makes the synth darker/muffled, while more to the right makes it brigher and clearer
+
+hamishrmit,Wed Sep 16 00:44:38 2026 +1000,added synth filter and envelope,added synth filter and envelope settings to js in preparation for the spatial input controlling the sound
+
+hamishrmit,Tue Sep 15 23:47:47 2026 +1000,made all elements central,used flexbox to align all elements in the centre of the page, rather than everything being on the left
+
+hamishrmit,Wed Sep 9 00:07:23 2026 +1000,updated styling to fit toddler aesthetic,I had my styling as black and purple which does not really fit the aesthetic of a children's toy, so I updated the colour scheme in the style sheet. I also made the 'ok' button a bit bigger and fixed up its border, and added some more fitting font and border to the rest
+
+hamishrmit,Tue Sep 1 23:14:43 2026 +1000,fixed glitch where visual feedback wasn't showing,the visual feedback was only showing when the piano was played with computer keys but wasn't showing when played with mouse, I fixed this by adding the active class where it was missing
+
+hamishrmit,Tue Sep 1 22:43:27 2026 +1000,removed unnecessary class example code,went through and deleted all of the code from the class examples that I wouldn't be using in my project
+
+hamishrmit,Tue Sep 1 21:05:42 2026 +1000,made onscreen keys visually respond,added visual feedback to the onscreen piano keys when notes are played using the computer keyboard
+
+hamishrmit,Tue Sep 1 00:25:00 2026 +1000,added computer key buttons,added event listeners for user's computer keys so that they can play the piano with their keyboard buttons rather than just having to use mouse
+
+hamishrmit,Mon Aug 31 22:53:53 2026 +1000,added piano key dragging,added a mouseenter function so that notes also play when the user is holding down their mouse and dragging it over different keys
+
+hamishrmit,Mon Aug 31 22:32:56 2026 +1000,added mouse interaction to keys,used event listeners to make each key play its data-note
+
+hamishrmit,Mon Aug 31 21:59:13 2026 +1000,added black keys,added sharp keys to the keyboard and positioned them above the white keys to create a more realistic looking piano layout
+
+hamishrmit,Mon Aug 31 21:33:19 2026 +1000,added keyboard styling,added basic styling for the keyboard buttons and keys, including different colours for when the mouse is hovering over a key and when a key is being pressed
+
+hamishrmit,Mon Aug 31 21:12:29 2026 +1000,added keyboard html,added basic buttons in html for the keyboard
+
+hamishrmit,Wed Aug 26 16:11:38 2026 +1000,commented out temporal,commented out temporal code in js as I will not be using it for my project
+
+hamishrmit,Wed Aug 26 15:57:15 2026 +1000,experimented with random, spatial, and temporal functions,utilised specific functions to play around with different extended techniques; Math.random for random, mousemove for spatial and Temporal for time
+
+hamishrmit,Wed Aug 26 14:27:06 2026 +1000,added oscillator range,added oscillator range slider to code and function in js
+
+hamishrmit,Wed Aug 26 14:10:32 2026 +1000,added audio play/pause,added in a function to check current playing state and toggle it to opposite
+
+hamishrmit,Tue Aug 25 23:00:14 2026 +1000,made red dot stay still unless user is holding mouse down,added dragging variable and mousedown mouseup mousemove event listeners to make the red dot stay in place unless moved by the user, rather than just following the mouse
+
+hamishrmit,Tue Aug 25 21:35:38 2026 +1000,created basic spatial input field,used Patrick's class example as inspiration to create a spatial input area. utilised mousemove function and added styling in style.css
+
+hamishrmit,Wed Aug 19 16:18:43 2026 +1000,began implementing spatial input,using Patrick's example for reference, have began adding the index html and also created a spatialInput js document
+
+hamishrmit,Wed Aug 19 15:58:44 2026 +1000,css and js edge case,added in some visual feedback and handled edge cases for key press
+
+hamishrmit,Wed Aug 19 15:49:00 2026 +1000,added event listeners and key button,added a second button and created event listeners and synth for it
+
+hamishrmit,Wed Aug 12 16:14:42 2026 +1000,updated css with my preferred colours,changed some of the default colours from Patrick's example to colours I prefer more
+
+hamishrmit,Wed Aug 12 15:56:23 2026 +1000,added font, colour border in css,obtained and embedded a font from google fonts, created colour variables, edited borders
+
+hamishrmit,Wed Aug 12 14:56:42 2026 +1000,added dialog button and audio init,created dialog pop up with button to close it, and added event listener on dialog close to start the audio system
+
+hamishrmit,Wed Jul 29 15:16:03 2026 +1000,init project,added in basic files, linked into html, added a sound button that works
