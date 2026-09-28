@@ -10,6 +10,9 @@ let dragging = false;
 function updateMarker(x, y) {
   const hue = 220 - (x / 100) * 175;
   marker.setAttribute("fill", `hsl(${hue}, 90%, 55%)`);
+
+  // top is small (short attack) and bottom is big (long attack)
+  marker.setAttribute("r", 3 + (y / 100) * 5);
 }
 
 function moveMarker(e) {
