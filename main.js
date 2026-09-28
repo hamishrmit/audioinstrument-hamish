@@ -8,7 +8,7 @@ const introDialogCloseButton = document.getElementById("intro-dialog-close");
 // init our synth
 const synth = new Tone.PolySynth({
   oscillator: {
-    type: "sine",
+    type: "sawtooth",
   },
   envelope: {
     attack: 0.1,
@@ -17,6 +17,9 @@ const synth = new Tone.PolySynth({
     release: 0.5,
   },
 });
+
+// sawtooth is louder than sine so turned it down a bit
+synth.volume.value = -6;
 
 const filter = new Tone.Filter(5000, "lowpass");
 
