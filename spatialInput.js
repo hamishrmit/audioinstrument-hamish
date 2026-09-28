@@ -7,10 +7,10 @@ let dragging = false;
 
 // the sound settings for each corner of the pad
 const corners = {
-  topLeft: { brightness: 0.1, pitch: -12, echo: 0.1 },
+  topLeft: { brightness: 0.1, pitch: -12, echo: 0 },
   topRight: { brightness: 0.6, pitch: 0, echo: 0 },
   bottomLeft: { brightness: 0.2, pitch: 0, echo: 0.6 },
-  bottomRight: { brightness: 1, pitch: 12, echo: 0.6 },
+  bottomRight: { brightness: 1, pitch: 12, echo: 0 },
 };
 
 // blended a setting between the four corners based on the marker position
