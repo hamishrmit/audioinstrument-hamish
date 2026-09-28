@@ -198,3 +198,14 @@ button {
   top: 50%;
   transform: translateY(-50%);
 }
+
+.shapeFeedback {
+  width: 250px;
+  height: 250px;
+}
+
+.feedbackShape {
+  fill: rgb(180, 140, 255);
+  stroke: var(--colour-02);
+  stroke-width: 2;
+}
