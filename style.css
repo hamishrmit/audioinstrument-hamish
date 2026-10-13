@@ -166,7 +166,6 @@ button {
   background-color: white;
   position: relative;
   overflow: visible;
-  transition: background-color 0.15s;
 }
 
 .spatialLabel {
@@ -205,4 +204,17 @@ button {
   fill: var(--colour-02);
   stroke: white;
   stroke-width: 1;
+}
+
+.shapeFeedback {
+  width: 250px;
+  height: 250px;
+}
+
+/* fill colour is set in spatialInput.js to match the pad */
+.feedbackShape {
+  fill: rgb(180, 140, 255);
+  stroke: var(--colour-02);
+  stroke-width: 2;
+  transition: fill 0.15s;
 }
