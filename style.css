@@ -175,8 +175,11 @@ button {
   left: 73%;
 }
 
+/* key sinks down and darkens when played */
 .key.active {
-  background-color: rgb(180, 140, 255);
+  filter: brightness(0.85);
+  transform: translateY(0.25rem);
+  box-shadow: inset 0 -0.2rem 0 rgba(0, 0, 0, 0.15);
 }
 
 .black-key.active {
