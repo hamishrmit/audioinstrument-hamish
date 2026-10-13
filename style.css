@@ -166,6 +166,7 @@ button {
   background-color: white;
   position: relative;
   overflow: visible;
+  transition: background-color 0.15s;
 }
 
 .spatialLabel {
@@ -200,13 +201,8 @@ button {
   transform: translateY(-50%);
 }
 
-.shapeFeedback {
-  width: 250px;
-  height: 250px;
-}
-
-.feedbackShape {
-  fill: rgb(180, 140, 255);
-  stroke: var(--colour-02);
-  stroke-width: 2;
+.xyPosMarker {
+  fill: var(--colour-02);
+  stroke: white;
+  stroke-width: 1;
 }

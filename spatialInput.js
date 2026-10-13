@@ -2,21 +2,17 @@
 
 const xyPad = document.getElementById("xyPad");
 const marker = document.querySelector(".xyPosMarker");
-const feedbackShape = document.querySelector(".feedbackShape");
+const spatialInput = document.querySelector(".spatialInput");
 
 let dragging = false;
 
-// change the shape to match the marker position
-// left is small (muffled), right is big (bright) top is square (short attack), bottom is round (long attack)
-function updateShape(x, y) {
-  const size = 30 + (x / 100) * 60;
-  const roundness = (y / 100) * (size / 2);
+// change the pad colour to match the marker position
+// left is cool blue (muffled), right is warm yellow (bright), top is vivid (short attack), bottom is pastel (long attack)
+function updatePadColour(x, y) {
+  const hue = 220 - (x / 100) * 175;
+  const saturation = 90 - (y / 100) * 50;
 
-  feedbackShape.setAttribute("x", 50 - size / 2);
-  feedbackShape.setAttribute("y", 50 - size / 2);
-  feedbackShape.setAttribute("width", size);
-  feedbackShape.setAttribute("height", size);
-  feedbackShape.setAttribute("rx", roundness);
+  spatialInput.style.backgroundColor = `hsl(${hue}, ${saturation}%, 70%)`;
 }
 
 function moveMarker(e) {
@@ -26,7 +22,7 @@ function moveMarker(e) {
 
   marker.setAttribute("cx", x);
   marker.setAttribute("cy", y);
-  updateShape(x, y);
+  updatePadColour(x, y);
 
   // X axis controls filter frequency
   filter.frequency.value = 200 * Math.pow(25, x / 100);
@@ -54,5 +50,5 @@ xyPad.addEventListener("mousemove", function (e) {
   }
 });
 
-// set the starting shape for the marker's position in the centre
-updateShape(50, 50);
+// set the starting colour for the marker's position in the centre
+updatePadColour(50, 50);
