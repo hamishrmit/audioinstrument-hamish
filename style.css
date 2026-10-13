@@ -99,7 +99,40 @@ button {
 }
 
 .white-key:hover {
-  background-color: rgb(235, 245, 255);
+  filter: brightness(1.1);
+}
+
+/* rainbow colours for each white key */
+.white-key[data-note="c4"] {
+  background-color: rgb(255, 99, 99);
+}
+
+.white-key[data-note="d4"] {
+  background-color: rgb(255, 165, 80);
+}
+
+.white-key[data-note="e4"] {
+  background-color: rgb(255, 220, 90);
+}
+
+.white-key[data-note="f4"] {
+  background-color: rgb(130, 220, 110);
+}
+
+.white-key[data-note="g4"] {
+  background-color: rgb(90, 205, 220);
+}
+
+.white-key[data-note="a4"] {
+  background-color: rgb(95, 150, 255);
+}
+
+.white-key[data-note="b4"] {
+  background-color: rgb(180, 140, 255);
+}
+
+.white-key[data-note="c5"] {
+  background-color: rgb(255, 130, 200);
 }
 
 .black-key {
