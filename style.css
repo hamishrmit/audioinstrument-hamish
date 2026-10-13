@@ -196,7 +196,7 @@ button {
   gap: 7rem;
   align-items: center;
   margin-top: 3rem;
-  margin-bottom: 3rem;
+  margin-bottom: 4.5rem;
 }
 
 .spatialInput {
@@ -211,34 +211,35 @@ button {
 
 .spatialLabel {
   position: absolute;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 700;
   white-space: nowrap;
   z-index: 3;
 }
 
+/* labels sit a small gap outside each edge of the pad */
 .spatialLabelTop {
-  top: -2.5rem;
+  top: 0;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, calc(-100% - 0.4rem));
 }
 
 .spatialLabelBottom {
-  bottom: -2.5rem;
+  bottom: 0;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, calc(100% + 0.4rem));
 }
 
 .spatialLabelLeft {
-  left: -5rem;
+  left: 0;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(calc(-100% - 0.75rem), -50%);
 }
 
 .spatialLabelRight {
-  right: -4rem;
+  right: 0;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(calc(100% + 0.75rem), -50%);
 }
 
 .xyPosMarker {
