@@ -294,3 +294,20 @@ button {
     --key-font-size: 1.1rem;
   }
 }
+
+/* medium screens (or very short windows): smallest layout */
+@media (width < 840px), (height < 740px) {
+  :root {
+    --pad-size: 220px;
+    --shape-size: 140px;
+    --keyboard-width: 440px;
+    --section-gap: 4rem;
+    --label-size: 1.1rem;
+    --key-font-size: 1rem;
+  }
+
+  .spatialInputSection {
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+  }
+}
