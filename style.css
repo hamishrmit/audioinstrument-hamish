@@ -9,9 +9,9 @@
   --border: 0.25rem solid var(--colour-02);
 
   /* sizes, changed at each screen size in the media queries at the bottom */
-  --pad-size: 350px;
-  --shape-size: 250px;
-  --keyboard-width: 700px;
+  --pad-size: min(450px, (100vw - 22rem) * 0.58, (100vh - 11rem) * 0.57);
+  --shape-size: calc(var(--pad-size) * 0.7);
+  --keyboard-width: min(900px, (100vh - 11rem) * 1.15);
   --section-gap: 7rem;
   --label-size: 1.5rem;
   --key-font-size: 1.25rem;
@@ -274,10 +274,6 @@ button {
 /* on extra-large screens everything gets bigger */
 @media (width > 1600px) and (height > 1050px) {
   :root {
-    --pad-size: 450px;
-    --shape-size: 320px;
-    --keyboard-width: 900px;
-    --section-gap: 9rem;
     --label-size: 1.75rem;
     --key-font-size: 1.5rem;
   }
@@ -286,10 +282,6 @@ button {
 /* for expanded screens (or short windows) everything shrinks a bit */
 @media (width < 1200px), (height < 880px) {
   :root {
-    --pad-size: 280px;
-    --shape-size: 200px;
-    --keyboard-width: 560px;
-    --section-gap: 5rem;
     --label-size: 1.25rem;
     --key-font-size: 1.1rem;
   }
@@ -298,10 +290,6 @@ button {
 /* medium screens (or very short windows): smallest layout */
 @media (width < 840px), (height < 740px) {
   :root {
-    --pad-size: 220px;
-    --shape-size: 140px;
-    --keyboard-width: 440px;
-    --section-gap: 4rem;
     --label-size: 1.1rem;
     --key-font-size: 1rem;
   }
