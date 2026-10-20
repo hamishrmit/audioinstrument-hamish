@@ -92,8 +92,10 @@ button {
 .keyboard {
   position: relative;
   display: flex;
-  width: 700px;
-  height: 260px;
+  /* height follows the width so the keys keep their shape at any size */
+  width: var(--keyboard-width);
+  max-width: 90vw;
+  aspect-ratio: 700 / 260;
 }
 
 .white-key {
