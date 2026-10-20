@@ -270,3 +270,15 @@ button {
   stroke-width: 2;
   transition: fill 0.15s;
 }
+
+/* on extra-large screens everything gets bigger */
+@media (width > 1600px) and (height > 1050px) {
+  :root {
+    --pad-size: 450px;
+    --shape-size: 320px;
+    --keyboard-width: 900px;
+    --section-gap: 9rem;
+    --label-size: 1.75rem;
+    --key-font-size: 1.5rem;
+  }
+}
