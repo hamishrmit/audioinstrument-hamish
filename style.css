@@ -282,3 +282,15 @@ button {
     --key-font-size: 1.5rem;
   }
 }
+
+/* for expanded screens (or short windows) everything shrinks a bit */
+@media (width < 1200px), (height < 880px) {
+  :root {
+    --pad-size: 280px;
+    --shape-size: 200px;
+    --keyboard-width: 560px;
+    --section-gap: 5rem;
+    --label-size: 1.25rem;
+    --key-font-size: 1.1rem;
+  }
+}
