@@ -9,9 +9,14 @@
   --border: 0.25rem solid var(--colour-02);
 
   /* sizes, changed at each screen size in the media queries at the bottom */
-  --pad-size: min(450px, (100vw - 22rem) * 0.58, (100vh - 11rem) * 0.57);
-  --shape-size: calc(var(--pad-size) * 0.7);
-  --keyboard-width: min(900px, (100vh - 11rem) * 1.15);
+  --keyboard-width: min(1100px, 100vw - 4rem);
+  --keyboard-height: clamp(160px, 32vh, 320px);
+  --pad-size: min(
+    450px,
+    100vh - var(--keyboard-height) - 12rem,
+    (100vw - 22rem) * 0.5
+  );
+  --shape-size: var(--pad-size);
   --section-gap: 7rem;
   --label-size: 1.5rem;
   --key-font-size: 1.25rem;
@@ -26,16 +31,22 @@
   }
 }
 
+/* fills the space under the header and centres everything in it */
 main {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding-bottom: 1.5rem;
 }
 
 header {
   width: 100%;
   display: flex;
   justify-content: center;
+  padding-top: 1rem;
 }
 
 header h1 {
@@ -47,6 +58,8 @@ body {
   background-color: var(--colour-01);
   color: var(--colour-02);
   margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 dialog[open] {
@@ -92,10 +105,9 @@ button {
 .keyboard {
   position: relative;
   display: flex;
-  /* height follows the width so the keys keep their shape at any size */
+  /* keyboard stretches across the screen, height is a share of the window */
   width: var(--keyboard-width);
-  max-width: 90vw;
-  aspect-ratio: 700 / 260;
+  height: var(--keyboard-height);
 }
 
 .white-key {
@@ -109,6 +121,11 @@ button {
   border-radius: 0 0 1rem 1rem;
   box-shadow: inset 0 -0.6rem 0 rgba(0, 0, 0, 0.15);
   font-weight: 600;
+  /* letter sits at the bottom of the key so the black keys don't cover it */
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 1.25rem;
 }
 
 .white-key:hover {
@@ -200,13 +217,15 @@ button {
   outline: none;
 }
 
+/* pad and shape spread across the same width as the keyboard, padding makes room for the top and bottom labels */
 .spatialInputSection {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
+  width: var(--keyboard-width);
   gap: var(--section-gap);
   align-items: center;
-  margin-top: 3rem;
-  margin-bottom: 4.5rem;
+  padding: calc(var(--label-size) * 1.2 + 0.4rem) 0;
 }
 
 .spatialInput {
@@ -292,10 +311,5 @@ button {
   :root {
     --label-size: 1.1rem;
     --key-font-size: 1rem;
-  }
-
-  .spatialInputSection {
-    margin-top: 2rem;
-    margin-bottom: 3rem;
   }
 }
