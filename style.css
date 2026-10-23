@@ -98,8 +98,13 @@ button {
   display: block;
 }
 
+/* open hand shows the pad can be grabbed, closed hand while dragging */
 #xyPad {
-  cursor: crosshair;
+  cursor: grab;
+}
+
+#xyPad:active {
+  cursor: grabbing;
 }
 
 .keyboard {
@@ -275,6 +280,7 @@ button {
   fill: var(--colour-02);
   stroke: white;
   stroke-width: 1;
+  pointer-events: none;
 }
 
 .shapeFeedback {
