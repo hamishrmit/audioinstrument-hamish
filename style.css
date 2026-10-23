@@ -20,6 +20,7 @@
   --section-gap: 7rem;
   --label-size: 1.5rem;
   --key-font-size: 1.25rem;
+  --black-key-width: 9%;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -172,8 +173,8 @@ button {
 
 .black-key {
   position: absolute;
-  width: 8%;
-  height: 60%;
+  width: var(--black-key-width);
+  height: 65%;
   background-color: var(--colour-02);
   color: white;
   border: 2px solid var(--colour-02);
@@ -187,24 +188,25 @@ button {
   background-color: rgb(80, 80, 100);
 }
 
+/* each black key is centred on the line between two white keys (each white key is 12.5% wide) */
 .keyboard .black-key:nth-of-type(2) {
-  left: 9%;
+  left: calc(12.5% - var(--black-key-width) / 2);
 }
 
 .keyboard .black-key:nth-of-type(4) {
-  left: 21%;
+  left: calc(25% - var(--black-key-width) / 2);
 }
 
 .keyboard .black-key:nth-of-type(7) {
-  left: 47%;
+  left: calc(50% - var(--black-key-width) / 2);
 }
 
 .keyboard .black-key:nth-of-type(9) {
-  left: 60%;
+  left: calc(62.5% - var(--black-key-width) / 2);
 }
 
 .keyboard .black-key:nth-of-type(11) {
-  left: 73%;
+  left: calc(75% - var(--black-key-width) / 2);
 }
 
 /* key sinks down and darkens when played */
