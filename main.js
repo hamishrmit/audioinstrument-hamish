@@ -85,6 +85,7 @@ function startNote(e) {
   if (!heldNotes.has(note)) {
     synth.triggerAttack(note);
     heldNotes.add(note);
+    pulseShape();
   }
 
   keyPressed.classList.add("active");

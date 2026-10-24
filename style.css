@@ -296,6 +296,26 @@ button {
   stroke: var(--colour-02);
   stroke-width: 2;
   transition: fill 0.15s;
+  /* shape grows from centre when it pulses */
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* shape pulses when a note is played */
+.feedbackShape.pulse {
+  animation: shapePulse 0.4s ease-out;
+}
+
+@keyframes shapePulse {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* on extra-large screens everything gets bigger */

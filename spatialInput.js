@@ -28,6 +28,17 @@ function updateShape(x, y) {
   feedbackShape.setAttribute("rx", roundness);
 }
 
+// pulse the shape when a note starts, quick pop if marker is set to short, slow swell if set to long
+function pulseShape() {
+  const attack = synth.get().envelope.attack;
+  feedbackShape.style.animationDuration = `${0.3 + attack}s`;
+
+  // remove and re-add the class so the animation restarts every time
+  feedbackShape.classList.remove("pulse");
+  void feedbackShape.getBoundingClientRect();
+  feedbackShape.classList.add("pulse");
+}
+
 function moveMarker(e) {
   const rect = xyPad.getBoundingClientRect();
   const x = ((e.clientX - rect.left) / rect.width) * 100;
