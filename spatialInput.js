@@ -5,6 +5,7 @@ const marker = document.querySelector(".xyPosMarker");
 const feedbackShape = document.querySelector(".feedbackShape");
 
 let dragging = false;
+let pulseAnimation = null;
 
 // change the shape colour to match the marker position
 // left is cool blue (muffled), right is warm yellow (bright), top is vivid (short attack), bottom is pastel (long attack)
@@ -31,12 +32,26 @@ function updateShape(x, y) {
 // pulse the shape when a note starts, quick pop if marker is set to short, slow swell if set to long
 function pulseShape() {
   const attack = synth.get().envelope.attack;
-  feedbackShape.style.animationDuration = `${0.3 + attack}s`;
 
-  // remove and re-add the class so the animation restarts every time
-  feedbackShape.classList.remove("pulse");
-  void feedbackShape.getBoundingClientRect();
-  feedbackShape.classList.add("pulse");
+  // start from the shape's current size so fast notes don't make it snap back
+  const currentScale = new DOMMatrix(getComputedStyle(feedbackShape).transform)
+    .a;
+
+  if (pulseAnimation) {
+    pulseAnimation.cancel();
+  }
+
+  pulseAnimation = feedbackShape.animate(
+    [
+      { transform: `scale(${currentScale})` },
+      { transform: "scale(1.1)", offset: 0.3 },
+      { transform: "scale(1)" },
+    ],
+    {
+      duration: (0.25 + attack * 0.5) * 1000,
+      easing: "ease-out",
+    },
+  );
 }
 
 function moveMarker(e) {

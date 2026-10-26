@@ -310,20 +310,3 @@ button {
   transform-box: fill-box;
   transform-origin: center;
 }
-
-/* shape pulses when a note is played */
-.feedbackShape.pulse {
-  animation: shapePulse 0.4s ease-out;
-}
-
-@keyframes shapePulse {
-  0% {
-    transform: scale(1);
-  }
-  40% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
