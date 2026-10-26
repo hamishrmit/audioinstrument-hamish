@@ -8,18 +8,31 @@
   --colour-04: rgb(95, 205, 255);
   --border: 0.25rem solid var(--colour-02);
 
+  /* rainbow key colours, also used for the title and pad frame */
+  --key-red: rgb(255, 99, 99);
+  --key-orange: rgb(255, 165, 80);
+  --key-yellow: rgb(255, 220, 90);
+  --key-green: rgb(130, 220, 110);
+  --key-teal: rgb(90, 205, 220);
+  --key-blue: rgb(95, 150, 255);
+  --key-purple: rgb(180, 140, 255);
+  --key-pink: rgb(255, 130, 200);
+
   /* all sizes scale smoothly with the window, clamp() and min() keep them between a smallest and largest size */
   --label-size: clamp(1.3rem, min(1.9vw, 3.1vh), 2rem);
   --keyboard-width: min(1200px, 100vw - 4rem);
   --keyboard-base-height: clamp(160px, 32vh, 320px);
-  /* room needed beside the pad to fit the side labels */
-  --section-gap: calc(var(--label-size) * 3.6 + 1.25rem);
-  /* width left for the pad and shape once the gaps are taken out */
-  --pad-space: calc(var(--keyboard-width) - var(--section-gap) * 3);
+  /* thickness of the red toy frame around the pad, including its outline */
+  --pad-frame: 1.15rem;
+  /* room needed beside the pad to fit the frame and the side labels */
+  --section-gap: calc(var(--label-size) * 3.6 + 1.25rem + var(--pad-frame));
+  /* width left for the pad and shape once the room for the side labels is taken out */
+  --pad-space: calc(var(--keyboard-width) - var(--section-gap) * 2);
   /* pad is as big as it can be without pushing the keyboard off the bottom or the labels off the sides */
   --pad-size: min(
     450px,
-    100vh - var(--keyboard-base-height) - 9rem - var(--label-size) * 2.4,
+    100vh - var(--keyboard-base-height) - 10.5rem - var(--pad-frame) * 2 -
+      var(--label-size) * 2.4,
     var(--pad-space) * 0.6
   );
   /* shape matches the pad unless there isn't enough room beside it */
@@ -27,7 +40,8 @@
   /* keyboard grows taller to fill any height the pad doesn't use */
   --keyboard-height: clamp(
     var(--keyboard-base-height),
-    100vh - var(--pad-size) - 9rem - var(--label-size) * 2.4,
+    100vh - var(--pad-size) - 10.5rem - var(--pad-frame) * 2 -
+      var(--label-size) * 2.4,
     360px
   );
   --key-font-size: clamp(1rem, var(--keyboard-height) * 0.075, 1.5rem);
@@ -61,8 +75,46 @@ header {
   padding-top: 1rem;
 }
 
+/* chunky outlined title, each letter is one of the key colours */
 header h1 {
   margin: 0;
+  font-size: 2.5rem;
+  letter-spacing: 0.05em;
+  -webkit-text-stroke: 0.1em var(--colour-02);
+  paint-order: stroke fill;
+  text-shadow: 0 0.1em 0 var(--colour-02);
+}
+
+header h1 span:nth-child(1) {
+  color: var(--key-red);
+}
+
+header h1 span:nth-child(2) {
+  color: var(--key-orange);
+}
+
+header h1 span:nth-child(3) {
+  color: var(--key-yellow);
+}
+
+header h1 span:nth-child(4) {
+  color: var(--key-green);
+}
+
+header h1 span:nth-child(5) {
+  color: var(--key-teal);
+}
+
+header h1 span:nth-child(6) {
+  color: var(--key-blue);
+}
+
+header h1 span:nth-child(7) {
+  color: var(--key-purple);
+}
+
+header h1 span:nth-child(8) {
+  color: var(--key-pink);
 }
 
 body {
@@ -87,14 +139,20 @@ dialog[open] {
   border-radius: 1.5rem;
 }
 
+/* ok button looks like a piano key */
 #intro-dialog-close {
-  background-color: rgb(180, 140, 255);
-  color: white;
-  border: none;
+  background-color: var(--key-purple);
+  color: var(--colour-02);
+  border: var(--border);
   border-radius: 1rem;
-  padding: 0.75rem 2.5rem;
+  padding: 0.75rem 2.5rem 1rem;
   font-size: 1.25rem;
   font-weight: 600;
+  box-shadow: inset 0 -0.35rem 0 rgba(0, 0, 0, 0.15);
+}
+
+#intro-dialog-close:hover {
+  filter: brightness(1.1);
 }
 
 button {
@@ -151,35 +209,35 @@ button {
 
 /* rainbow colours for each white key */
 .white-key[data-note="c4"] {
-  background-color: rgb(255, 99, 99);
+  background-color: var(--key-red);
 }
 
 .white-key[data-note="d4"] {
-  background-color: rgb(255, 165, 80);
+  background-color: var(--key-orange);
 }
 
 .white-key[data-note="e4"] {
-  background-color: rgb(255, 220, 90);
+  background-color: var(--key-yellow);
 }
 
 .white-key[data-note="f4"] {
-  background-color: rgb(130, 220, 110);
+  background-color: var(--key-green);
 }
 
 .white-key[data-note="g4"] {
-  background-color: rgb(90, 205, 220);
+  background-color: var(--key-teal);
 }
 
 .white-key[data-note="a4"] {
-  background-color: rgb(95, 150, 255);
+  background-color: var(--key-blue);
 }
 
 .white-key[data-note="b4"] {
-  background-color: rgb(180, 140, 255);
+  background-color: var(--key-purple);
 }
 
 .white-key[data-note="c5"] {
-  background-color: rgb(255, 130, 200);
+  background-color: var(--key-pink);
 }
 
 .black-key {
@@ -235,22 +293,31 @@ button {
   outline: none;
 }
 
-/* pad and shape spread across the same width as the keyboard, padding makes room for the top and bottom labels */
+/* pad and shape spread across the same width as the keyboard, padding makes room for the frame and labels */
 .spatialInputSection {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   width: var(--keyboard-width);
   align-items: center;
-  padding: calc(var(--label-size) * 1.2 + 0.4rem) 0;
+  padding: calc(var(--label-size) * 1.2 + 0.7rem + var(--pad-frame)) 0
+    calc(var(--label-size) * 1.2 + 1.05rem + var(--pad-frame))
+    var(--section-gap);
+  gap: var(--section-gap);
 }
 
+/* pad looks like an etch-a-sketch, a grey screen inside a red toy frame with a chunky bottom edge like the keys */
 .spatialInput {
   width: var(--pad-size);
   height: var(--pad-size);
   border: var(--border);
   border-radius: 1.5rem;
-  background-color: white;
+  background-color: rgb(225, 228, 232);
+  box-shadow:
+    0 0 0 0.9rem var(--key-red),
+    0 0 0 var(--pad-frame) var(--colour-02),
+    0 0.35rem 0 var(--pad-frame) var(--colour-02),
+    inset 0 0.4rem 0 rgba(0, 0, 0, 0.08);
   position: relative;
   overflow: visible;
 }
@@ -259,33 +326,34 @@ button {
   position: absolute;
   font-size: var(--label-size);
   font-weight: 700;
+  line-height: 1.2;
   white-space: nowrap;
   z-index: 3;
 }
 
-/* labels sit a small gap outside each edge of the pad */
+/* labels sit a small gap outside each edge of the pad's frame */
 .spatialLabelTop {
   top: 0;
   left: 50%;
-  transform: translate(-50%, calc(-100% - 0.4rem));
+  transform: translate(-50%, calc(-100% - var(--pad-frame) - 0.6rem));
 }
 
 .spatialLabelBottom {
   bottom: 0;
   left: 50%;
-  transform: translate(-50%, calc(100% + 0.4rem));
+  transform: translate(-50%, calc(100% + var(--pad-frame) + 0.95rem));
 }
 
 .spatialLabelLeft {
   left: 0;
   top: 50%;
-  transform: translate(calc(-100% - 0.75rem), -50%);
+  transform: translate(calc(-100% - var(--pad-frame) - 0.75rem), -50%);
 }
 
 .spatialLabelRight {
   right: 0;
   top: 50%;
-  transform: translate(calc(100% + 0.75rem), -50%);
+  transform: translate(calc(100% + var(--pad-frame) + 0.75rem), -50%);
 }
 
 .xyPosMarker {
@@ -304,7 +372,9 @@ button {
 .feedbackShape {
   fill: rgb(180, 140, 255);
   stroke: var(--colour-02);
-  stroke-width: 2;
+  /* same border thickness as the pad at any size */
+  stroke-width: 4px;
+  vector-effect: non-scaling-stroke;
   transition: fill 0.15s;
   /* shape grows from centre when it pulses */
   transform-box: fill-box;
