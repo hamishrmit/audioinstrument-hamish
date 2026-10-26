@@ -9,7 +9,7 @@
   --border: 0.25rem solid var(--colour-02);
 
   /* all sizes scale smoothly with the window, clamp() and min() keep them between a smallest and largest size */
-  --label-size: clamp(1.1rem, min(1.6vw, 2.6vh), 1.75rem);
+  --label-size: clamp(1.3rem, min(1.9vw, 3.1vh), 2rem);
   --keyboard-width: min(1200px, 100vw - 4rem);
   --keyboard-base-height: clamp(160px, 32vh, 320px);
   /* room needed beside the pad to fit the side labels */
