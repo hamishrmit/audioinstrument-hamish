@@ -8,18 +8,29 @@
   --colour-04: rgb(95, 205, 255);
   --border: 0.25rem solid var(--colour-02);
 
-  /* sizes, changed at each screen size in the media queries at the bottom */
-  --keyboard-width: min(1100px, 100vw - 4rem);
-  --keyboard-height: clamp(160px, 32vh, 320px);
+  /* all sizes scale smoothly with the window, clamp() and min() keep them between a smallest and largest size */
+  --label-size: clamp(1.1rem, min(1.6vw, 2.6vh), 1.75rem);
+  --keyboard-width: min(1200px, 100vw - 4rem);
+  --keyboard-base-height: clamp(160px, 32vh, 320px);
+  /* room needed beside the pad to fit the side labels */
+  --section-gap: calc(var(--label-size) * 3.6 + 1.25rem);
+  /* width left for the pad and shape once the gaps are taken out */
+  --pad-space: calc(var(--keyboard-width) - var(--section-gap) * 3);
+  /* pad is as big as it can be without pushing the keyboard off the bottom or the labels off the sides */
   --pad-size: min(
     450px,
-    100vh - var(--keyboard-height) - 12rem,
-    (100vw - 22rem) * 0.5
+    100vh - var(--keyboard-base-height) - 9rem - var(--label-size) * 2.4,
+    var(--pad-space) * 0.6
   );
-  --shape-size: var(--pad-size);
-  --section-gap: 7rem;
-  --label-size: 1.5rem;
-  --key-font-size: 1.25rem;
+  /* shape matches the pad unless there isn't enough room beside it */
+  --shape-size: min(var(--pad-size), var(--pad-space) - var(--pad-size));
+  /* keyboard grows taller to fill any height the pad doesn't use */
+  --keyboard-height: clamp(
+    var(--keyboard-base-height),
+    100vh - var(--pad-size) - 9rem - var(--label-size) * 2.4,
+    360px
+  );
+  --key-font-size: clamp(1rem, var(--keyboard-height) * 0.075, 1.5rem);
   --black-key-width: 9%;
 }
 
@@ -40,7 +51,7 @@ main {
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  padding-bottom: 1.5rem;
+  padding: 1rem 0 1.5rem;
 }
 
 header {
@@ -230,7 +241,6 @@ button {
   flex-direction: row;
   justify-content: space-evenly;
   width: var(--keyboard-width);
-  gap: var(--section-gap);
   align-items: center;
   padding: calc(var(--label-size) * 1.2 + 0.4rem) 0;
 }
@@ -315,29 +325,5 @@ button {
   }
   100% {
     transform: scale(1);
-  }
-}
-
-/* on extra-large screens everything gets bigger */
-@media (width > 1600px) and (height > 1050px) {
-  :root {
-    --label-size: 1.75rem;
-    --key-font-size: 1.5rem;
-  }
-}
-
-/* for expanded screens (or short windows) everything shrinks a bit */
-@media (width < 1200px), (height < 880px) {
-  :root {
-    --label-size: 1.25rem;
-    --key-font-size: 1.1rem;
-  }
-}
-
-/* medium screens (or very short windows): smallest layout */
-@media (width < 840px), (height < 740px) {
-  :root {
-    --label-size: 1.1rem;
-    --key-font-size: 1rem;
   }
 }
